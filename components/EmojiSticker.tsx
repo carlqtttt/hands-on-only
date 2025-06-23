@@ -1,22 +1,25 @@
-import { View } from "react-native"
-import { Image } from "expo-image"
+import { View, Text, StyleSheet } from "react-native"
 
 type Props = {
   imageSize: number
-  stickerSource: any
+  stickerSource: string
 }
 
 export default function EmojiSticker({ imageSize, stickerSource }: Props) {
   return (
-    <View style={{ top: -350 }}>
-      <Image
-        source={stickerSource}
-        resizeMode="contain"
-        style={{
-          width: imageSize / 4,
-          height: imageSize / 4,
-        }}
-      />
+    <View style={[styles.stickerContainer, { top: -350 }]}>
+      <Text style={styles.emoji}>{stickerSource}</Text>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  stickerContainer: {
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  emoji: {
+    fontSize: 80,
+  },
+})

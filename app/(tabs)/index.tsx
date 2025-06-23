@@ -12,7 +12,8 @@ import EmojiPicker from "../../components/EmojiPicker"
 import EmojiList from "../../components/EmojiList"
 import EmojiSticker from "../../components/EmojiSticker"
 
-const PlaceholderImage = require("../../assets/images/background-image.png")
+// Use a web-based placeholder image
+const PlaceholderImage = "https://picsum.photos/320/440?random=1"
 
 export default function Index() {
   const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined)
@@ -48,6 +49,7 @@ export default function Index() {
 
   const onSaveImageAsync = async () => {
     // We will implement this later
+    console.log("Save image functionality coming soon!")
   }
 
   return (

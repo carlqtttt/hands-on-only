@@ -1,24 +1,18 @@
 "use client"
 
 import { useState } from "react"
-import { StyleSheet, FlatList, Image, Platform, Pressable } from "react-native"
+import { StyleSheet, FlatList, Platform, Pressable, Text } from "react-native"
 
-const emoji = [
-  require("../assets/images/emoji1.png"),
-  require("../assets/images/emoji2.png"),
-  require("../assets/images/emoji3.png"),
-  require("../assets/images/emoji4.png"),
-  require("../assets/images/emoji5.png"),
-  require("../assets/images/emoji6.png"),
-]
+// Use emoji characters instead of image files
+const emoji = ["😀", "😂", "😍", "🤔", "😎", "🥳", "😴", "🤯", "😇", "🤪"]
 
 type Props = {
-  onSelect: (image: any) => void
+  onSelect: (emoji: string) => void
   onCloseModal: () => void
 }
 
 export default function EmojiList({ onSelect, onCloseModal }: Props) {
-  const [selectedEmoji, setSelectedEmoji] = useState<any>(null)
+  const [selectedEmoji, setSelectedEmoji] = useState<string | null>(null)
 
   return (
     <FlatList
@@ -28,13 +22,15 @@ export default function EmojiList({ onSelect, onCloseModal }: Props) {
       contentContainerStyle={styles.listContainer}
       renderItem={({ item, index }) => (
         <Pressable
+          key={index}
+          style={styles.emojiContainer}
           onPress={() => {
             setSelectedEmoji(item)
             onSelect(item)
             onCloseModal()
           }}
         >
-          <Image source={item} key={index} style={styles.image} />
+          <Text style={styles.emoji}>{item}</Text>
         </Pressable>
       )}
     />
@@ -50,9 +46,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-  image: {
-    width: 100,
-    height: 100,
+  emojiContainer: {
+    width: 80,
+    height: 80,
     marginRight: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#464C55",
+    borderRadius: 40,
+  },
+  emoji: {
+    fontSize: 40,
   },
 })
